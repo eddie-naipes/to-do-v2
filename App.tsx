@@ -13,12 +13,31 @@ export default function App() {
     setTasks([...tasks, newTask]);
   }
 
+  const handleRemoveTask = (id: number) => {
+      console.log(id)
+    setTasks(tasks.filter(task => task.id !== id));
+  }
+
+  const handleDoneTask = (id: number) => {
+    setTasks(tasks.map(task => {
+      if (task.id === id) {
+        return {
+          ...task,
+          isCompleted: !task.isCompleted
+        }
+      }
+      return task;
+    }))
+  }
+
   return (
       <View style={styles.container}>
         <StatusBar style="light"/>
         <Home
             tasks={tasks}
             handleAddTask={handleAddTask}
+            handleRemoveTask={handleRemoveTask}
+            handleDoneTask={handleDoneTask}
         />
     </View>
   );
