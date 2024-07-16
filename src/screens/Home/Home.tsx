@@ -1,6 +1,6 @@
 import {Alert, FlatList, Text, TextInput, TouchableOpacity, View} from "react-native";
 import {styles} from "./styles";
-import {ClipboardText, PlusCircle, Timer} from "phosphor-react-native";
+import {PlusCircle} from "phosphor-react-native";
 import {colors} from "../../../global";
 import {TaskDTO} from "../../shared/interfaces/TaskDTO";
 import {useState} from "react";
