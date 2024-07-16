@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
         justifyContent: "center",
-        marginTop: -40
+        marginTop: -35
     },
     button: {
         width: 52,
@@ -53,7 +53,48 @@ export const styles = StyleSheet.create({
         borderColor: colors.purpleDark,
         borderStyle: "solid",
         borderWidth: 1
+    },
+    containerList: {
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 20
+    },
+    headerList: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: 327,
+        marginBottom: 20
+    },
+    headerCreate: {
+        color: colors.blue
+    },
+    headerDone: {
+        color: colors.purple
+    },
+    count: {
+        color: colors.gray100,
+        backgroundColor: colors.gray400,
+    },
+    containerCount: {
+        width:24,
+        height:24,
+        backgroundColor: colors.danger,
+        borderRadius: 50
+    },
+    emptyList: {
+        width: 327,
+        height: 208,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    emptyText: {
+        color: colors.gray300,
+        marginTop: 16,
+        width: 287,
+        height: 40,
+        textAlign: "center"
     }
+
 
 
 })
