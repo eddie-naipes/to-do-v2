@@ -5,6 +5,8 @@ import {colors} from "../../../global";
 import {TaskDTO} from "../../shared/interfaces/TaskDTO";
 import {useState} from "react";
 import {Card} from "../../components/Card/Card";
+import {Header} from "../../components/Header/Header";
+import {EmptyList} from "../../components/EmptyList/EmptyList";
 
 interface HeaderProps {
     handleAddTask: (newTask: TaskDTO) => void;
@@ -38,18 +40,7 @@ export const Home = ({handleAddTask, tasks, handleRemoveTask, handleDoneTask}: H
 
     return (
         <>
-            <View style={styles.container}>
-                <View style={styles.containerLogo}>
-                    <Timer
-                        color={colors.blue}
-                        size={28}
-                    />
-                    <Text style={styles.contentLogo}>
-                        <Text style={styles.to}>to</Text>
-                        <Text style={styles.do}>do</Text>
-                    </Text>
-                </View>
-            </View>
+            <Header/>
             <View style={styles.containerInput}>
                 <TextInput
                     style={[styles.input, focused && styles.containerInputFocus]}
@@ -86,6 +77,7 @@ export const Home = ({handleAddTask, tasks, handleRemoveTask, handleDoneTask}: H
 
                 </View>
                 <FlatList
+                    keyExtractor={task => String(task.id)}
                     data={tasks}
                     renderItem={task => {
                         return (
@@ -96,18 +88,7 @@ export const Home = ({handleAddTask, tasks, handleRemoveTask, handleDoneTask}: H
                             />
                         )
                     }}
-                    ListEmptyComponent={() => {
-                        return (
-                            <View style={styles.emptyList}>
-                                <ClipboardText
-                                    size={56}
-                                    color={colors.gray300}
-                                />
-                                <Text style={styles.emptyText}>You don't have tasks registered yet
-                                    Create tasks and organize your to-do items</Text>
-                            </View>
-                        )
-                    }}
+                    ListEmptyComponent={EmptyList}
                 />
             </View>
         </>
