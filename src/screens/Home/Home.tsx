@@ -71,9 +71,19 @@ export const Home = ({handleAddTask, tasks, handleRemoveTask, handleDoneTask}: H
             </View>
             <View style={styles.containerList}>
                 <View style={styles.headerList}>
-                    <Text style={styles.headerCreate}>Criadas <Text style={styles.count}>{tasks.length}</Text> </Text>
-                    <Text style={styles.headerDone}>Concluídas <Text
-                        style={styles.count}>{tasks.filter(task => task.isCompleted).length}</Text></Text>
+                    <View style={styles.headerItem}>
+                        <Text style={styles.headerCreate}>Create</Text>
+                        <View style={styles.countContainer}>
+                            <Text style={styles.count}>{tasks.length}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.headerItem}>
+                        <Text style={styles.headerDone}>Done</Text>
+                        <View style={styles.countContainer}>
+                            <Text style={styles.count}>{tasks.filter(task => task.isCompleted).length}</Text>
+                        </View>
+                    </View>
+
                 </View>
                 <FlatList
                     data={tasks}

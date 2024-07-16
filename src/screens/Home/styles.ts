@@ -19,11 +19,11 @@ export const styles = StyleSheet.create({
     },
     to: {
         color: colors.blue,
-        fontFamily: "Inter_700Bold",
+        fontWeight: "bold",
     },
     do: {
         color: colors.purple,
-        fontFamily: "Inter_700Bold",
+        fontWeight: "bold",
     },
     input: {
         backgroundColor: colors.gray500,
@@ -66,20 +66,24 @@ export const styles = StyleSheet.create({
         marginBottom: 20
     },
     headerCreate: {
-        color: colors.blue
+        color: colors.blue,
+        fontWeight: "bold"
     },
     headerDone: {
-        color: colors.purple
+        color: colors.purple,
+        fontWeight: "bold"
+
     },
+    countContainer: {
+        borderRadius: 50,
+        backgroundColor: colors.gray400,
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        marginLeft: 8
+    },
+
     count: {
         color: colors.gray100,
-        backgroundColor: colors.gray400,
-    },
-    containerCount: {
-        width:24,
-        height:24,
-        backgroundColor: colors.danger,
-        borderRadius: 50
     },
     emptyList: {
         width: 327,
@@ -93,7 +97,12 @@ export const styles = StyleSheet.create({
         width: 287,
         height: 40,
         textAlign: "center"
-    }
+    },
+    headerItem: {
+        flexDirection: "row",
+        alignItems: "center"
+    },
+
 
 
 
