@@ -1,7 +1,6 @@
 import {Container, Content, IconCheck, IconCircle, IconTrash, TouchableRadioChecked, TouchableTrash} from "./styles";
 import {useState} from "react";
 import {TaskDTO} from "@interfaces/TaskDTO";
-import {useTheme} from "styled-components/native";
 
 
 interface CardProps {
@@ -15,7 +14,6 @@ export const Card = ({handleRemoveTask, handleDoneTask, task}: CardProps) => {
 
     const [isSelected, setSelection] = useState(false);
 
-    const theme = useTheme();
 
     const handleRadioPress = () => {
         handleDoneTask(task.id);
