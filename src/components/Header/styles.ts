@@ -1,28 +1,28 @@
-import {StyleSheet} from "react-native";
-import {colors} from "../../../global";
+import styled from 'styled-components/native';
 
-export const styles = StyleSheet.create({
-    container: {
-        width: "100%",
-        height: 173,
-        backgroundColor: colors.gray700,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    containerLogo: {
-        flexDirection: "row",
-        alignItems: "center",
-    },
-    contentLogo: {
-        fontSize: 32,
-        marginLeft: 8
-    },
-    to: {
-        color: colors.blue,
-        fontWeight: "bold",
-    },
-    do: {
-        color: colors.purple,
-        fontWeight: "bold",
-    },
-})
+
+export const To = styled.Text`
+    color: ${props => props.theme.COLORS.BLUE};
+    font-family: ${props => props.theme.FONT_FAMILY.INTER_700BOLD};
+`
+export const Do = styled.Text`
+    color: ${props => props.theme.COLORS.PURPLE};
+    font-family: ${props => props.theme.FONT_FAMILY.INTER_700BOLD};
+`
+
+export const ContentLogo = styled.Text`
+    margin-left: 8px;
+    font-size: ${props => props.theme.FONT_SIZE.LG};
+`;
+
+export const ContainerLogo = styled.View`
+    flex-direction: row;
+    align-items: center;
+`
+export const Container = styled.View`
+    width: 100%;
+    height: 173px;
+    background-color: ${props => props.theme.COLORS.GRAY_700};
+    align-items: center;
+    justify-content: center;
+`

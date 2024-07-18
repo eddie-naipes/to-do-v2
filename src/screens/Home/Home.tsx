@@ -1,12 +1,11 @@
-import {Alert, FlatList, Text, TextInput, TouchableOpacity, View} from "react-native";
-import {styles} from "./styles";
+import {Alert} from "react-native";
+import {ContainerInput, ContentInput, TouchAdd} from "./styles";
 import {PlusCircle} from "phosphor-react-native";
-import {colors} from "../../../global";
-import {TaskDTO} from "../../shared/interfaces/TaskDTO";
+import {TaskDTO} from "@interfaces/TaskDTO";
 import {useState} from "react";
-import {Card} from "../../components/Card/Card";
-import {Header} from "../../components/Header/Header";
-import {EmptyList} from "../../components/EmptyList/EmptyList";
+import {Header} from "@components/Header/Header";
+import {List} from "@components/List/List"
+import {useTheme} from "styled-components/native";
 
 interface HeaderProps {
     handleAddTask: (newTask: TaskDTO) => void;
@@ -37,60 +36,35 @@ export const Home = ({handleAddTask, tasks, handleRemoveTask, handleDoneTask}: H
         setTitle("");
     }
 
+    const theme = useTheme();
+
 
     return (
         <>
             <Header/>
-            <View style={styles.containerInput}>
-                <TextInput
-                    style={[styles.input, focused && styles.containerInputFocus]}
+            <ContainerInput>
+                <ContentInput
                     placeholder={"What needs to be done?"}
-                    placeholderTextColor={colors.gray300}
+                    placeholderTextColor={theme.COLORS.GRAY_300}
                     onChangeText={setTitle}
                     value={title}
                     onFocus={() => setFocused(true)}
                     onBlur={() => setFocused(false)}
+                    focused={focused}
                 />
-                <TouchableOpacity
-                    style={styles.button}
+                <TouchAdd
                     onPress={createTask}
                 >
                     <PlusCircle
-                        color={colors.gray100}
+                        color={theme.COLORS.GRAY_100}
                     />
-                </TouchableOpacity>
-            </View>
-            <View style={styles.containerList}>
-                <View style={styles.headerList}>
-                    <View style={styles.headerItem}>
-                        <Text style={styles.headerCreate}>Create</Text>
-                        <View style={styles.countContainer}>
-                            <Text style={styles.count}>{tasks.length}</Text>
-                        </View>
-                    </View>
-                    <View style={styles.headerItem}>
-                        <Text style={styles.headerDone}>Done</Text>
-                        <View style={styles.countContainer}>
-                            <Text style={styles.count}>{tasks.filter(task => task.isCompleted).length}</Text>
-                        </View>
-                    </View>
-
-                </View>
-                <FlatList
-                    keyExtractor={task => String(task.id)}
-                    data={tasks}
-                    renderItem={task => {
-                        return (
-                            <Card
-                                task={task.item}
-                                handleRemoveTask={handleRemoveTask}
-                                handleDoneTask={handleDoneTask}
-                            />
-                        )
-                    }}
-                    ListEmptyComponent={EmptyList}
-                />
-            </View>
+                </TouchAdd>
+            </ContainerInput>
+            <List
+                tasks={tasks}
+                handleRemoveTask={handleRemoveTask}
+                handleDoneTask={handleDoneTask}
+            />
         </>
 
     );

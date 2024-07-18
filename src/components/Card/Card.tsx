@@ -1,9 +1,7 @@
-import {Text, TouchableOpacity, View} from "react-native";
-import {styles} from "./styles";
+import {Container, Content, IconCheck, IconCircle, IconTrash, TouchableRadioChecked, TouchableTrash} from "./styles";
 import {useState} from "react";
-import {Check, Circle, Trash} from "phosphor-react-native";
-import {colors} from "../../../global";
-import {TaskDTO} from "../../shared/interfaces/TaskDTO";
+import {TaskDTO} from "@interfaces/TaskDTO";
+import {useTheme} from "styled-components/native";
 
 
 interface CardProps {
@@ -17,49 +15,35 @@ export const Card = ({handleRemoveTask, handleDoneTask, task}: CardProps) => {
 
     const [isSelected, setSelection] = useState(false);
 
+    const theme = useTheme();
+
     const handleRadioPress = () => {
         handleDoneTask(task.id);
         setSelection(!isSelected);
     };
 
     return (
-        <View style={styles.container}>
-            {isSelected ?
-                <TouchableOpacity
-                    style={styles.checkContainer}
+        <Container>
+
+            <TouchableRadioChecked
                     onPress={handleRadioPress}
+                    isSelected={isSelected}
                 >
-                    <Check
-                        color={colors.gray100}
-                        size={16}
-                    />
-                </TouchableOpacity>
-                :
-                <TouchableOpacity
-                    style={styles.containerCircle}
-                    onPress={handleRadioPress}
-                >
-                    <Circle
-                        color={colors.blue}
-                        size={20}
-                    />
-                </TouchableOpacity>
-            }
-            <Text
-                style={
-                    [styles.content, isSelected && styles.isSelectedText]
-                }
+                {isSelected ? <IconCheck size={16}/> : <IconCircle size={20}/>}
+            </TouchableRadioChecked>
+            <Content
+                isSelected={isSelected}
             >
                 {task.title}
-            </Text>
-            <TouchableOpacity
+            </Content>
+
+            <TouchableTrash
                 onPress={() => handleRemoveTask(task.id)}
             >
-                <Trash
+                <IconTrash
                     size={16}
-                    color={colors.gray300}
                 />
-            </TouchableOpacity>
-        </View>
+            </TouchableTrash>
+        </Container>
     );
 };
