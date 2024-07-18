@@ -1,21 +1,23 @@
-import {styles} from "./styles";
-import {Text, View} from "react-native";
+import {Container, ContainerLogo, ContentLogo, Do, To} from "./styles";
 import {Timer} from "phosphor-react-native";
-import {colors} from "../../../global";
+import {useTheme} from "styled-components"
 
 export const Header = () => {
+
+    const theme = useTheme();
+
     return (
-        <View style={styles.container}>
-            <View style={styles.containerLogo}>
+        <Container>
+            <ContainerLogo>
                 <Timer
-                    color={colors.blue}
+                    color={theme.COLORS.GRAY_100}
                     size={28}
                 />
-                <Text style={styles.contentLogo}>
-                    <Text style={styles.to}>to</Text>
-                    <Text style={styles.do}>do</Text>
-                </Text>
-            </View>
-        </View>
+                <ContentLogo>
+                    <To>to</To>
+                    <Do>do</Do>
+                </ContentLogo>
+            </ContainerLogo>
+        </Container>
     );
 };

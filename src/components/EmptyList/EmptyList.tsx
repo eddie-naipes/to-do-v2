@@ -1,17 +1,20 @@
-import {Text, View} from "react-native";
 import {ClipboardText} from "phosphor-react-native";
-import {colors} from "../../../global";
-import {styles} from "./styles";
+import {Container, Content} from "./styles";
+import {useTheme} from "styled-components"
 
 export const EmptyList = () => {
+    const theme = useTheme();
+
     return (
-        <View style={styles.emptyList}>
+        <Container>
             <ClipboardText
                 size={56}
-                color={colors.gray300}
+                color={theme.COLORS.GRAY_300}
             />
-            <Text style={styles.emptyText}>You don't have tasks registered yet
-                Create tasks and organize your to-do items</Text>
-        </View>
+            <Content>
+                You don't have tasks registered yet
+                Create tasks and organize your to-do items
+            </Content>
+        </Container>
     );
 };

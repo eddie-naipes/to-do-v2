@@ -1,9 +1,10 @@
 import {StatusBar} from 'expo-status-bar';
-import {View} from 'react-native';
-import {styles} from "./global";
 import {useState} from "react";
-import {TaskDTO} from "./src/shared/interfaces/TaskDTO";
-import {Home} from "./src/screens/Home/Home";
+import {TaskDTO} from "@interfaces/TaskDTO";
+import {Home} from "@screens/Home/Home";
+import theme from "@theme/styles";
+import {ThemeProvider} from 'styled-components'
+import {Container} from "./styles";
 
 export default function App() {
 
@@ -31,15 +32,17 @@ export default function App() {
   }
 
   return (
-      <View style={styles.container}>
-        <StatusBar style="light"/>
-        <Home
-            tasks={tasks}
-            handleAddTask={handleAddTask}
-            handleRemoveTask={handleRemoveTask}
-            handleDoneTask={handleDoneTask}
-        />
-    </View>
+      <ThemeProvider theme={theme}>
+        <Container>
+          <StatusBar style="light"/>
+          <Home
+              tasks={tasks}
+              handleAddTask={handleAddTask}
+              handleRemoveTask={handleRemoveTask}
+              handleDoneTask={handleDoneTask}
+          />
+        </Container>
+      </ThemeProvider>
   );
 }
 

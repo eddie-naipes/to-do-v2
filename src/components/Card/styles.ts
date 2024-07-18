@@ -1,42 +1,62 @@
-import {StyleSheet} from "react-native";
-import {colors} from "../../../global";
+import {Check, Circle, Trash} from "phosphor-react-native";
+import styled, {css} from "styled-components/native";
 
-export const styles = StyleSheet.create({
-    container: {
-        width: 327,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: "space-around",
-        padding: 16,
-        backgroundColor: colors.gray500,
-        marginTop: 8,
-        borderRadius: 4
-    },
-    content: {
-        color: colors.gray100,
-        width: 235,
-        marginRight: 8,
-        marginLeft: 8
-    },
-    checkContainer: {
-        width: 20,
-        height: 20,
-        borderStyle: "solid",
-        borderWidth: 1,
-        borderColor: colors.purpleDark,
-        borderRadius: 50,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: colors.purpleDark
-    },
-    containerCircle: {
-        width: 20,
-        height: 20,
-    },
-    isSelectedText: {
-        textDecorationLine: "line-through",
-        color: colors.gray300
-    }
+interface ContentProps {
+    isSelected?: boolean;
+}
 
 
-})
+export const Container = styled.View`
+    width: 327px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 16px;
+    background-color: ${props => props.theme.COLORS.GRAY_500};
+    margin-top: 8px;
+    border-radius: 4px;
+`
+
+export const TouchableCheck = styled.TouchableOpacity`
+    width: 20px;
+    height: 20px;
+    border: 1px solid ${props => props.theme.COLORS.PURPLE_DARK};
+    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
+    background-color: ${props => props.theme.COLORS.PURPLE_DARK};
+`
+
+export const TouchableRadioChecked = styled.TouchableOpacity<ContentProps>`
+    width: 20px;
+    height: 20px;
+    ${props => props.isSelected && css`
+        border: 1px solid ${props => props.theme.COLORS.PURPLE_DARK};
+        border-radius: 50px;
+        justify-content: center;
+        align-items: center;
+        background-color: ${props => props.theme.COLORS.PURPLE_DARK};
+    `}
+`
+
+export const Content = styled.Text<ContentProps>`
+    color: ${props => props.theme.COLORS.GRAY_100};
+    width: 235px;
+    margin: 0 8px;
+    ${props => props.isSelected && css`
+        text-decoration-line: line-through;
+    `}
+`
+
+export const IconCircle = styled(Circle)`
+    color: ${props => props.theme.COLORS.BLUE};
+`
+
+export const IconTrash = styled(Trash)`
+    color: ${props => props.theme.COLORS.GRAY_300};
+`
+
+export const IconCheck = styled(Check)`
+    color: ${props => props.theme.COLORS.GRAY_100};
+`
+export const TouchableTrash = styled.TouchableOpacity``
